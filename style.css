@@ -79,6 +79,7 @@ body {
   border-radius: 3px;
   width: 80%;
   font-size: 10px;
+  cursor: pointer;
 }
 
 .table_btn .btn:hover {

@@ -56,41 +56,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td class="table_image" data-field="image">
-                <img src="./images/abbott_h.png" alt="" />
-              </td>
-              <td class="table_firstName" data-field="firstName">Hannah</td>
-              <td class="table_lastName" data-field="lastName">Abbott</td>
-              <td class="table_house" data-field="house">Gryffyndor</td>
-              <td class="table_btn" data-field="btn">
-                <div class="btn">FULL PROFILE</div>
-              </td>
-            </tr>
-
-            <tr>
-              <td class="table_image" data-field="image">
-                <img src="./images/abbott_h.png" alt="" />
-              </td>
-              <td class="table_firstName" data-field="firstName">Hannah</td>
-              <td class="table_lastName" data-field="lastName">Abbott</td>
-              <td class="table_house" data-field="house">Gryffyndor</td>
-              <td class="table_btn" data-field="btn">
-                <div class="btn">FULL PROFILE</div>
-              </td>
-            </tr>
-
-            <tr>
-              <td class="table_image" data-field="image">
-                <img src="./images/abbott_h.png" alt="" />
-              </td>
-              <td class="table_firstName" data-field="firstName">Hannah</td>
-              <td class="table_lastName" data-field="lastName">Abbott</td>
-              <td class="table_house" data-field="house">Gryffyndor</td>
-              <td class="table_btn" data-field="btn">
-                <div class="btn">FULL PROFILE</div>
-              </td>
-            </tr>
+            <template id="tableTemp">
+              <tr>
+                <td class="table_image" data-field="image">
+                  <img src="./images/abbott_h.png" alt="" />
+                </td>
+                <td class="table_firstName" data-field="firstName">Hannah</td>
+                <td class="table_lastName" data-field="lastName">Abbott</td>
+                <td class="table_house" data-field="house">Gryffyndor</td>
+                <td class="table_btn" data-field="btn">
+                  <div class="btn">FULL PROFILE</div>
+                </td>
+              </tr>
+            </template>
           </tbody>
         </table>
 
@@ -123,77 +101,19 @@
           </table>
 
           <section id="grid-students">
-            <div id="student">
-              <div class="grid_image">
-                <img src="./images/abbott_h.png" alt="" />
+            <template id="gridTemp">
+              <div id="student">
+                <div class="grid_image" data-field="image">
+                  <img src="./images/abbott_h.png" alt="" />
+                </div>
+                <div class="grid_name">
+                  <p class="grid_firstName" data-field="firstName">Hannah</p>
+                  <p class="grid_lastName" data-field="lastName">Abbot</p>
+                </div>
+                <div class="grid_house" data-field="house">Gryffyndor</div>
+                <div class="grid_button btn" data-field="btn">FULL PROFILE</div>
               </div>
-              <div class="grid_name">
-                <p class="grid_firstName">Hannah</p>
-                <p class="grid_lastName">Abbot</p>
-              </div>
-              <div class="grid_house">Gryffyndor</div>
-              <div class="grid_button btn">FULL PROFILE</div>
-            </div>
-
-            <div id="student">
-              <div class="grid_image">
-                <img src="./images/abbott_h.png" alt="" />
-              </div>
-              <div class="grid_name">
-                <p class="grid_firstName">Hannah</p>
-                <p class="grid_lastName">Abbot</p>
-              </div>
-              <div class="grid_house">Gryffyndor</div>
-              <div class="grid_button btn">FULL PROFILE</div>
-            </div>
-
-            <div id="student">
-              <div class="grid_image">
-                <img src="./images/abbott_h.png" alt="" />
-              </div>
-              <div class="grid_name">
-                <p class="grid_firstName">Hannah</p>
-                <p class="grid_lastName">Abbot</p>
-              </div>
-              <div class="grid_house">Gryffyndor</div>
-              <div class="grid_button btn">FULL PROFILE</div>
-            </div>
-
-            <div id="student">
-              <div class="grid_image">
-                <img src="./images/abbott_h.png" alt="" />
-              </div>
-              <div class="grid_name">
-                <p class="grid_firstName">Hannah</p>
-                <p class="grid_lastName">Abbot</p>
-              </div>
-              <div class="grid_house">Gryffyndor</div>
-              <div class="grid_button btn">FULL PROFILE</div>
-            </div>
-
-            <div id="student">
-              <div class="grid_image">
-                <img src="./images/abbott_h.png" alt="" />
-              </div>
-              <div class="grid_name">
-                <p class="grid_firstName">Hannah</p>
-                <p class="grid_lastName">Abbot</p>
-              </div>
-              <div class="grid_house">Gryffyndor</div>
-              <div class="grid_button btn">FULL PROFILE</div>
-            </div>
-
-            <div id="student">
-              <div class="grid_image">
-                <img src="./images/abbott_h.png" alt="" />
-              </div>
-              <div class="grid_name">
-                <p class="grid_firstName">Hannah</p>
-                <p class="grid_lastName">Abbot</p>
-              </div>
-              <div class="grid_house">Gryffyndor</div>
-              <div class="grid_button btn">FULL PROFILE</div>
-            </div>
+            </template>
           </section>
         </div>
       </div>
