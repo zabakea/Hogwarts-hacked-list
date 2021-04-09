@@ -27,6 +27,42 @@
         </ul>
       </div>
 
+      <div id="filtering">
+        Filter by house:
+        <button
+          class="filter"
+          data-action="filter"
+          data-filter="Slytherin"
+          style="background-color: #2a623d; color: #aaaaaa"
+        >
+          Slytherin
+        </button>
+        <button
+          class="filter"
+          data-action="filter"
+          data-filter="Hufflepuff"
+          style="background-color: #ffdb00; color: #60605c"
+        >
+          Hufflepuff
+        </button>
+        <button
+          class="filter"
+          data-action="filter"
+          data-filter="Ravenclaw"
+          style="background-color: #222f5b; color: #946b2d"
+        >
+          Ravenclaw
+        </button>
+        <button
+          class="filter"
+          data-action="filter"
+          data-filter="Gryffindor"
+          style="background-color: #740001; color: #eeba30"
+        >
+          Gryffindor
+        </button>
+      </div>
+
       <div class="view_main">
         <table class="view_wrap list-view">
           <thead>
@@ -55,21 +91,7 @@
               </th>
             </tr>
           </thead>
-          <tbody>
-            <template id="tableTemp">
-              <tr>
-                <td class="table_image" data-field="image">
-                  <img src="./images/abbott_h.png" alt="" />
-                </td>
-                <td class="table_firstName" data-field="firstName">Hannah</td>
-                <td class="table_lastName" data-field="lastName">Abbott</td>
-                <td class="table_house" data-field="house">Gryffyndor</td>
-                <td class="table_btn" data-field="btn">
-                  <div class="btn">FULL PROFILE</div>
-                </td>
-              </tr>
-            </template>
-          </tbody>
+          <tbody></tbody>
         </table>
 
         <div class="view_wrap grid-view" style="display: none">
@@ -100,24 +122,38 @@
             </tr>
           </table>
 
-          <section id="grid-students">
-            <template id="gridTemp">
-              <div id="student">
-                <div class="grid_image" data-field="image">
-                  <img src="./images/abbott_h.png" alt="" />
-                </div>
-                <div class="grid_name">
-                  <p class="grid_firstName" data-field="firstName">Hannah</p>
-                  <p class="grid_lastName" data-field="lastName">Abbot</p>
-                </div>
-                <div class="grid_house" data-field="house">Gryffyndor</div>
-                <div class="grid_button btn" data-field="btn">FULL PROFILE</div>
-              </div>
-            </template>
-          </section>
+          <section id="grid-students"></section>
         </div>
       </div>
     </div>
+
+    <template id="tableTemp">
+      <tr>
+        <td class="table_image" data-field="image">
+          <img src="./images/abbott_h.png" alt="" />
+        </td>
+        <td class="table_firstName" data-field="firstName">Hannah</td>
+        <td class="table_lastName" data-field="lastName">Abbott</td>
+        <td class="table_house" data-field="house">Gryffyndor</td>
+        <td class="table_btn" data-field="btn">
+          <div class="btn">FULL PROFILE</div>
+        </td>
+      </tr>
+    </template>
+
+    <template id="gridTemp">
+      <div id="student">
+        <div class="grid_image" data-field="image">
+          <img src="./images/abbott_h.png" alt="" />
+        </div>
+        <div class="grid_name">
+          <p class="grid_firstName" data-field="firstName">Hannah</p>
+          <p class="grid_lastName" data-field="lastName">Abbot</p>
+        </div>
+        <div class="grid_house" data-field="house">Gryffyndor</div>
+        <div class="grid_button btn" data-field="btn">FULL PROFILE</div>
+      </div>
+    </template>
 
     <script src="script.js"></script>
   </body>
