@@ -3,8 +3,11 @@
 let li_links = document.querySelectorAll(".links ul li");
 let view_wraps = document.querySelectorAll(".view_wrap");
 let newAtt;
-let listTosort;
-let finalList;
+
+let filterBy = "all";
+let sortBy;
+let sortDir;
+
 
 const Student = {
     firstName: "",
@@ -131,7 +134,6 @@ function prepareObjects(studentList) {
         student.house = house;
         student.gender = gender;
         student.image = image;
-        console.log(student);
         allStudents.push(student);
 
     })
@@ -148,22 +150,29 @@ function GetFilterAttribute(event) {
     console.log(oldAtt);
     console.log(newAtt);
     if (oldAtt === newAtt) {
-        const filterBy = allStudents;
-        filterList(filterBy);
+        filterBy = "";
+        setFilter(filterBy);
         button.style.padding = "4px 8px";
         newAtt = undefined;
     } else {
         if (oldbutton !== null) {
             button.style.padding = "4px 8px"
         }
-        const filterBy = newAtt;
+        filterBy = newAtt;
         button.style.padding = "2px 4px"
-        filterList(filterBy);
+        // filterList(filterBy);
+        console.log(filterBy);
+        setFilter(filterBy)
     }
 }
-function filterList(filterBy) {
-    let filteredList;
-    console.log(finalList);
+function setFilter(filter) {
+    buildList();
+    filterBy = filter;
+
+}
+
+function filterList(filteredList) {
+    // let filteredList;
     if (filterBy === "Gryffindor") {
         filteredList = allStudents.filter(isGryffindor);
     } else if (filterBy === "Slytherin") {
@@ -175,7 +184,7 @@ function filterList(filterBy) {
     } else {
         filteredList = allStudents;
     }
-    displayList(filteredList);
+    return filteredList;
 }
 function isGryffindor(student) {
     return student.house === "Gryffindor";
@@ -191,21 +200,47 @@ function isRavenclaw(student) {
 }
 
 
-// function getSortingAttribute(event) {
-//     sortBy = event.target.dataset.sort;
-//     console.log(finalList);
-//     sortedList = finalList.sort(compare);
+function getSortingAttribute(event) {
+    sortBy = event.target.dataset.sort;
+    sortDir = event.target.dataset.sortDirection;
 
-//     displayList(sortedList);
+    if (sortDir === "asc") {
+        event.target.dataset.sortDirection = "desc";
+    } else {
+        event.target.dataset.sortDirection = "asc";
+    }
+    setSort(sortBy, sortDir);
+}
 
-//     function compare(a, b) {
+function setSort(sortBy, sortDir) {
+    sortBy = sortBy;
+    sortDir = sortDir;
+    buildList();
 
-//         if (a.firstName < b.firstName) {
-//             return -1
-//         } else { return 1 }
-//     }
-// }
+}
 
+function sortingList(sortedList) {
+    let direction = 1;
+
+    if (sortDir === "asc") {
+        direction = -1;
+    }
+    sortedList = sortedList.sort(compare);
+
+
+    function compare(a, b) {
+        if (a[sortBy] < b[sortBy]) {
+            return -1 * direction
+        } else { return 1 * direction }
+    }
+    // displayList(sortedList);
+    return sortedList;
+}
+function buildList() {
+    const curentList = filterList(allStudents);
+    currentList = sortingList(curentList);
+    displayList(currentList);
+}
 
 function displayList(students) {
     document.querySelector("tbody").innerHTML = "";

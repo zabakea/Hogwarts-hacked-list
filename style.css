@@ -150,3 +150,7 @@ body {
 #student .btn:hover {
   background-color: #3bd62b;
 }
+
+.asc::after {
+  content: "gore";
+}
