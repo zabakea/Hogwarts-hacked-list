@@ -9,6 +9,7 @@ let sortBy;
 let sortDir;
 
 
+
 const Student = {
     firstName: "",
     lastName: "",
@@ -33,6 +34,7 @@ function start() {
     document.querySelectorAll("[data-action='sort']").forEach(sortButton => {
         sortButton.addEventListener("click", getSortingAttribute);
     });
+
 
 }
 
@@ -134,10 +136,11 @@ function prepareObjects(studentList) {
         student.house = house;
         student.gender = gender;
         student.image = image;
+        student.expelled = false;
+        student.inquisitor = false;
         allStudents.push(student);
 
     })
-    console.log(allStudents);
     displayList(allStudents);
     return student;
 
@@ -255,9 +258,11 @@ function displayStudentList(student) {
     copy.querySelector(".table_firstName").innerHTML = student.firstName;
     copy.querySelector(".table_lastName").innerHTML = student.lastName;
     copy.querySelector(".table_house").innerHTML = student.house;
-    copy.querySelector(".table_image img").src = `./images/${student.image}`
+    copy.querySelector(".table_image img").src = `./images/${student.image}`;
+    copy.querySelector(".btn").addEventListener("click", () => {
+        check(student)
+    });
     document.querySelector("tbody").appendChild(copy);
-
 
     const templateGrid = document.querySelector("#gridTemp").content;
     const copyGrid = templateGrid.cloneNode(true);
@@ -265,7 +270,114 @@ function displayStudentList(student) {
     copyGrid.querySelector(".grid_firstName").innerHTML = student.firstName;
     copyGrid.querySelector(".grid_lastName").innerHTML = student.lastName;
     copyGrid.querySelector(".grid_house").innerHTML = student.house;
-    copyGrid.querySelector(".grid_image img").src = `./images/${student.image}`
+    copyGrid.querySelector(".grid_image img").src = `./images/${student.image}`;
+    copyGrid.querySelector(".btn").addEventListener("click", () => {
+        check(student)
+    });
     document.querySelector("#grid-students").appendChild(copyGrid);
+
+    document.querySelector(".expelledStudentsBtn").addEventListener("click", () => {
+        handleExpelledModal(student)
+    });
+
+
 }
 
+let modal = document.querySelector("#studentModal");
+let closeModal = document.querySelector(".closeModal")
+let modalContent = document.querySelector(".modalContent");
+
+function check(student) {
+    console.log(student);
+    modal.style.display = "block";
+    if (student.house === "Slytherin") {
+        modalContent.style.backgroundColor = "#2a623d"
+    } else if (student.house === "Hufflepuff") {
+        modalContent.style.backgroundColor = "#ffdb00"
+    } else if (student.house === "Ravenclaw") {
+        modalContent.style.backgroundColor = "#222f5b"
+    } else if (student.house === "Gryffindor") {
+        modalContent.style.backgroundColor = "#740001"
+    }
+    document.querySelector(".detail_crest img").src = `./images/${student.house}.png`;
+    document.querySelector(".detail_image img").src = `./images/${student.image}`;
+    document.querySelector(".detail_firstName").innerHTML = student.firstName;
+    document.querySelector(".detail_lastName").innerHTML = student.lastName;
+    document.querySelector(".detail_house").innerHTML = student.house;
+    document.querySelector(".detail_nickName").innerHTML = student.nickName ? student.nickName : "";
+    document.querySelector(".detail_middleName").innerHTML = student.middleName ? student.middleName : "";
+    document.querySelector(".detail_gender").innerHTML = student.gender === "boy" ? "Boy" : "Girl";
+    if (student.expelled === true) {
+        document.querySelector(".expellBtn").style.backgroundColor = "red";
+        document.querySelector(".expellBtn").innerHTML = "Is expelled"
+    } else {
+        document.querySelector(".expellBtn").style.backgroundColor = "green";
+        document.querySelector(".expellBtn").innerHTML = "Is not expelled"
+    };
+    if (student.inquisitor === true) {
+        document.querySelector(".InquisitorBtn").style.backgroundColor = "red";
+        document.querySelector(".InquisitorBtn").innerHTML = "Is inquisitor"
+    } else {
+        document.querySelector(".InquisitorBtn").style.backgroundColor = "green";
+        document.querySelector(".InquisitorBtn").innerHTML = "Is not inquisitor"
+    };
+
+
+    document.querySelector(".expellBtn").addEventListener("click", () => {
+        toggleExpell(student)
+    });
+
+    document.querySelector(".InquisitorBtn").addEventListener("click", () => {
+        toggleInquisitor(student)
+    });
+
+    function toggleExpell(student) {
+
+        student.expelled ? student.expelled = false : student.expelled = true;
+
+        if (student.expelled === true) {
+            document.querySelector(".expellBtn").style.backgroundColor = "red";
+            document.querySelector(".expellBtn").innerHTML = "Is expelled"
+        } else {
+            document.querySelector(".expellBtn").style.backgroundColor = "green";
+            document.querySelector(".expellBtn").innerHTML = "Is not expelled"
+        }
+    }
+
+
+    function toggleInquisitor(student) {
+        student.inquisitor ? student.inquisitor = false : student.inquisitor = true;
+
+        if (student.inquisitor === true) {
+            document.querySelector(".InquisitorBtn").style.backgroundColor = "red";
+            document.querySelector(".InquisitorBtn").innerHTML = "Is inquisitor"
+        } else {
+            document.querySelector(".InquisitorBtn").style.backgroundColor = "green";
+            document.querySelector(".InquisitorBtn").innerHTML = "Is not inquisitor"
+        }
+    }
+}
+
+closeModal.onclick = function () {
+    modal.style.display = "none";
+}
+
+
+function handleExpelledModal(student) {
+    let li = document.createElement("li");
+    let clone;
+    let list = document.querySelector(".expelledList");
+    document.querySelector("#expelledModal").style.display = "block";
+    if (student.expelled === true) {
+        clone = li.cloneNode();
+        clone.innerHTML = student.firstName + " " + student.lastName;
+        console.log(clone);
+        list.appendChild(clone);
+    }
+
+}
+
+
+document.querySelector(".closeModalExpelled").onclick = function () {
+    document.querySelector("#expelledModal").style.display = "none";
+}
